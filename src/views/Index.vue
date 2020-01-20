@@ -15,15 +15,19 @@
         <div class="container">
           <div class="title text-center">
             <h2>Artists</h2>
-            <br>
           </div>
-          <div class="md-layout">
-            <div class="md-layout-item md-size-50 md-small-size-100">
-              <login-card header-color="info">
-                <h2 slot="title" class="title">Kanye West</h2>
-                <img slot="description" class="description" />
-              </login-card>
-            </div>
+          <v-row>
+            <v-col cols="12" md="4" v-for="(artist, index) in artists" :key="index">
+              <v-card>
+                <v-toolbar color="#212121" dark>
+                  <v-toolbar-title>{{ artist.name }}</v-toolbar-title>
+                </v-toolbar>
+                <v-img max-height="150" aspect-ratio="1" :src="artist.image"></v-img>
+              </v-card>
+            </v-col>
+          </v-row>
+          <div class="text-center">
+            <v-pagination v-model="page" dark :length="4" circle></v-pagination>
           </div>
           <basic-elements></basic-elements>
         </div>
@@ -220,8 +224,7 @@
                   class="md-button md-success md-lg md-upgrade"
                   target="_blank"
                 >
-                  <md-icon>unarchive</md-icon>Vue Material Dashboard
-                  PRO
+                  <md-icon>unarchive</md-icon>Vue Material Dashboard PRO
                 </md-button>
               </div>
             </div>
@@ -274,7 +277,7 @@ export default {
     Notifications,
     TypographyImages,
     JavascriptComponents,
-    LoginCard,
+    LoginCard
   },
   name: "index",
   bodyClass: "index-page",
@@ -317,7 +320,19 @@ export default {
       firstname: null,
       email: null,
       password: null,
-      leafShow: false
+      leafShow: false,
+      artists: [
+        { name: "Kanye West", image: require("@/assets/img/kanye.jpg") },
+        { name: "Jeremy Zucker", image: require("@/assets/img/zucker.jpg") },
+        { name: "Ed Sheeran", image: require("@/assets/img/ed.jpg") },
+        { name: "Daft Punk", image: require("@/assets/img/daft.jpg") },
+        { name: "Regina Spektor", image: require("@/assets/img/spektor.jpg") },
+        { name: "Elohim", image: require("@/assets/img/elohim.jpg") },
+        { name: "Bjork", image: require("@/assets/img/bjork.jpg") },
+        { name: "Kendrick Lamar", image: require("@/assets/img/kendrick.jpg") },
+        { name: "Kailee Morgue", image: require("@/assets/img/morgue.jpg") }
+      ],
+      page: 1
     };
   },
   methods: {
